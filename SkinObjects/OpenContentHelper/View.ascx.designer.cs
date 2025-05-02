@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace UpendoVentures.SkinObjects.OpenContentHelper {
+namespace Upendo.SkinObjects.OpenContentHelper {
     
     
     public partial class View {

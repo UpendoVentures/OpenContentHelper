@@ -26,9 +26,8 @@ using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using Newtonsoft.Json.Linq;
 using Upendo.SkinObjects.OpenContentHelper.Components;
-using UpendoVentures.SkinObjects.OpenContentHelper.Components;
 
-namespace UpendoVentures.SkinObjects.OpenContentHelper
+namespace Upendo.SkinObjects.OpenContentHelper
 {
     /// <summary>
     /// This module injects OpenContent meta and link tags into the page header.

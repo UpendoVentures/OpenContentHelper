@@ -18,7 +18,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 using DotNetNuke.UI.Skins; 
 
-namespace UpendoVentures.SkinObjects.OpenContentHelper.Components
+namespace Upendo.SkinObjects.OpenContentHelper.Components
 {
     public class OpenContentHelperModuleBase : SkinObjectBase 
 	{
