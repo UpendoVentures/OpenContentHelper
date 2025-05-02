@@ -29,7 +29,7 @@
         </component>
         <component type="ResourceFile">
           <resourceFiles>
-            <basePath>DesktopModules/OpenContentHelper</basePath>
+            <basePath>DesktopModules/Upendo.OpenContentHelper</basePath>
             <resourceFile>
               <name>Resources.zip</name>
             </resourceFile>
