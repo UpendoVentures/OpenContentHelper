@@ -60,6 +60,7 @@
       <HintPath>$(HccReferencePath)\Hotcakes.Commerce.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
