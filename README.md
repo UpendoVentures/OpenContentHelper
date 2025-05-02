@@ -8,6 +8,8 @@
 >
 > This is the cleanest way to empower your non-developer users to manage metadata in a structured, secure, and scalable way across your DNN website.
 
+[Documentation for the Upendo.OpenContentHelper](https://github.com/UpendoVentures/OpenContentHelper/wiki)  
+
 ---  
 
 Hello, fellow DNN'er!  
