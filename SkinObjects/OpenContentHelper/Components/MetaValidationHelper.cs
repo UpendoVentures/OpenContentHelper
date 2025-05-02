@@ -30,16 +30,17 @@ namespace Upendo.SkinObjects.OpenContentHelper.Components
         private const int MaxContentLength = 500;
         private const int MaxHrefLength = 2048;
         private const int MaxAttrLength = 128;
+        private static readonly Regex ValidMetaPropertyPattern = new Regex(@"^[a-z0-9]+:[a-z0-9:_-]+$", RegexOptions.IgnoreCase);
 
         private static readonly HashSet<string> AllowedMetaNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
-    {
-        "author", "generator", "application-name", "robots"
-    };
+        {
+            "author", "generator", "application-name", "robots", "N/A"
+        };
 
         private static readonly HashSet<string> AllowedRelValues = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
-    {
-        "canonical", "icon", "stylesheet", "author", "alternate", "help", "license", "next", "prev", "search"
-    };
+        {
+            "canonical", "icon", "stylesheet", "author", "alternate", "help", "license", "next", "prev", "search"
+        };
 
         private static readonly Regex ValidSizesPattern = new Regex(@"^(\d+x\d+|any)$", RegexOptions.IgnoreCase);
 
@@ -52,6 +53,16 @@ namespace Upendo.SkinObjects.OpenContentHelper.Components
                         AllowedMetaNames.Contains(name.Trim());
 
             if (!valid) LogRejection("MetaTag.Name", name);
+            return valid;
+        }
+
+        public static bool IsValidMetaProperty(string property)
+        {
+            var valid = !string.IsNullOrWhiteSpace(property) &&
+                        property.Length <= MaxAttrLength &&
+                        ValidMetaPropertyPattern.IsMatch(property.Trim());
+
+            if (!valid) LogRejection("MetaTag.Property", property);
             return valid;
         }
 
@@ -93,7 +104,9 @@ namespace Upendo.SkinObjects.OpenContentHelper.Components
 
         public static bool IsValidSizes(string sizes)
         {
-            var valid = string.IsNullOrWhiteSpace(sizes) || ValidSizesPattern.IsMatch(sizes.Trim());
+            if (string.IsNullOrEmpty(sizes)) return false;
+
+            var valid = ValidSizesPattern.IsMatch(sizes.Trim());
 
             if (!valid) LogRejection("LinkTag.Sizes", sizes);
             return valid;

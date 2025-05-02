@@ -127,14 +127,26 @@ namespace Upendo.SkinObjects.OpenContentHelper
 
             foreach (var tag in metaTags)
             {
-                if (MetaValidationHelper.IsValidMetaName(tag.Name) &&
+                if ((MetaValidationHelper.IsValidMetaName(tag.Name) || MetaValidationHelper.IsValidMetaProperty(tag.Property)) &&
                     MetaValidationHelper.IsValidMetaContent(tag.Content))
                 {
-                    var meta = new HtmlMeta
+                    var meta = new HtmlMeta();
+
+                    if (!string.IsNullOrEmpty(tag.Name) && !string.Equals(tag.Name.Trim(), "N/A", StringComparison.OrdinalIgnoreCase))
                     {
-                        Name = tag.Name.Trim(),
-                        Content = tag.Content.Trim()
-                    };
+                        meta.Name = tag.Name.Trim();
+                    }
+
+                    if (!string.IsNullOrEmpty(tag.Property) && MetaValidationHelper.IsValidMetaProperty(tag.Property))
+                    {
+                        meta.Attributes.Add("property", tag.Property.Trim());
+                    }
+
+                    if (!string.IsNullOrEmpty(tag.Content))
+                    {
+                        meta.Content = tag.Content.Trim();
+                    }
+
                     page.Header.Controls.Add(meta);
                 }
             }
@@ -195,6 +207,7 @@ namespace Upendo.SkinObjects.OpenContentHelper
             public string ID { get; set; }
             public string Name { get; set; }
             public string Content { get; set; }
+            public string Property { get; set; }
         }
 
         public class LinkTag
