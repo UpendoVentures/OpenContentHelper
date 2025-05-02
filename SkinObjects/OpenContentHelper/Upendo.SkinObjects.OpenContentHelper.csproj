@@ -46,14 +46,13 @@
   </PropertyGroup>
   <Import Project="..\..\Build\SolutionReferences.targets" />
   <ItemGroup>
-    <PackageReference Include="DotNetNuke.Abstractions" Version="9.8.0" />
-    <PackageReference Include="DotNetNuke.Core" Version="9.8.0" />
-    <PackageReference Include="DotNetNuke.Instrumentation" Version="9.8.0" />
-    <PackageReference Include="DotNetNuke.Web" Version="9.8.0" />
-    <PackageReference Include="DotNetNuke.Web.Client" Version="9.8.0" />
-    <PackageReference Include="DotNetNuke.Web.Deprecated" Version="9.8.0" />
-    <PackageReference Include="DotNetNuke.WebApi" Version="9.8.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+    <PackageReference Include="DotNetNuke.Abstractions" Version="9.11.0" />
+    <PackageReference Include="DotNetNuke.Core" Version="9.11.0" />
+    <PackageReference Include="DotNetNuke.Instrumentation" Version="9.11.0" />
+    <PackageReference Include="DotNetNuke.Web" Version="9.11.0" />
+    <PackageReference Include="DotNetNuke.Web.Client" Version="9.11.0" />
+    <PackageReference Include="DotNetNuke.WebApi" Version="9.11.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Hotcakes.Commerce">
@@ -61,6 +60,7 @@
       <HintPath>$(HccReferencePath)\Hotcakes.Commerce.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -75,6 +75,7 @@
     <Reference Include="System.Web.Entity" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\MetaValidationHelper.cs" />
     <Compile Include="Components\SkinObjectModuleBase.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>

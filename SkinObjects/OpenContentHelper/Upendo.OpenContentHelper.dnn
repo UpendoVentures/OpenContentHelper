@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <dotnetnuke type="Package" version="6.0">
   <packages>
-    <package name="UpendoVentures.SkinObjects.OpenContentHelper" type="SkinObject" version="01.00.00">
-      <friendlyName>OpenContentHelper</friendlyName>
+    <package name="Upendo.SkinObjects.OpenContentHelper" type="SkinObject" version="01.00.00">
+      <friendlyName>Upendo.OpenContentHelper</friendlyName>
       <description>A helper theme object used to aid operations needed by the OpenContentTemplates-Razor project.</description>
-      <iconFile>~/DesktopModules/OpenContentHelper/Images/logo.png</iconFile>
+      <iconFile>~/DesktopModules/Upendo.OpenContentHelper/Images/logo.png</iconFile>
       <owner>
         <name>Will Strohl</name>
         <organization>UpendoVentures</organization>
@@ -15,20 +15,18 @@
       <releaseNotes src="ReleaseNotes.txt" />
       <azureCompatible>True</azureCompatible>
       <dependencies>
-        <dependency type="CoreVersion">09.08.00</dependency>
+        <dependency type="CoreVersion">09.11.00</dependency>
       </dependencies>
-
       <components>
-
         <component type="Assembly">
           <assemblies>
             <assembly>
-              <name>UpendoVentures.SkinObjects.OpenContentHelper.dll</name>
+              <path>bin</path>
+              <name>Upendo.SkinObjects.OpenContentHelper.dll</name>
               <version>01.00.00</version>
             </assembly>
           </assemblies>
         </component>
-
         <component type="ResourceFile">
           <resourceFiles>
             <basePath>DesktopModules/OpenContentHelper</basePath>
@@ -37,15 +35,13 @@
             </resourceFile>
           </resourceFiles>
         </component>
-
         <component type="SkinObject">
-            <moduleControl>
-              <controlKey>View</controlKey>
-              <controlSrc>DesktopModules/OpenContentHelper/View.ascx</controlSrc>
-              <supportsPartialRendering>False</supportsPartialRendering>
-            </moduleControl>
+          <moduleControl>
+            <controlKey>View</controlKey>
+            <controlSrc>DesktopModules/OpenContentHelper/View.ascx</controlSrc>
+            <supportsPartialRendering>False</supportsPartialRendering>
+          </moduleControl>
         </component>
-
       </components>
     </package>
   </packages>
