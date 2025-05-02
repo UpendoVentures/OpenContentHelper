@@ -1,4 +1,4 @@
-<style>
+﻿<style>
 	div.uv-install-wrapper h3, div.uv-install-wrapper h4, div.uv-install-wrapper p, div.uv-install-wrapper hr, div.uv-install-wrapper ul { margin-bottom: 0.5em; }
 	div.uv-install-wrapper ul { padding-left: 2em; }
 	.muy-importante { color:red;font-weight:bold; }
@@ -19,6 +19,7 @@
 			<li><a href="http://www.rammware.net/" target="_blank">John Ramminger</a></li>
 			<li><em>2 private sponsors</em></li>
 		</ul>
+		<p>NOTE: <em>This list does not include our valued <a href="https://upendodnn.com" target="_blank">Upendo DNN Support</a> clients.</em> 💪🏽🙏🏽</p>
 	
 		<h3>Contributors</h3>
 		<p>THANK YOU to the following community members for participating in this release!</p>
