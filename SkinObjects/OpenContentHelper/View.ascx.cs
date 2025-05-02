@@ -25,6 +25,7 @@ using System.Web.UI.HtmlControls;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using Newtonsoft.Json.Linq;
+using Upendo.SkinObjects.OpenContentHelper.Components;
 using UpendoVentures.SkinObjects.OpenContentHelper.Components;
 
 namespace UpendoVentures.SkinObjects.OpenContentHelper
@@ -127,22 +128,16 @@ namespace UpendoVentures.SkinObjects.OpenContentHelper
 
             foreach (var tag in metaTags)
             {
-                if (tag == null ||
-                    string.IsNullOrWhiteSpace(tag.Name) ||
-                    string.IsNullOrWhiteSpace(tag.Content))
-                    continue;
-
-                // Defensive checks
-                if (!IsSafeValue(tag.Name) || !IsSafeValue(tag.Content))
-                    continue;
-
-                var meta = new HtmlMeta
+                if (MetaValidationHelper.IsValidMetaName(tag.Name) &&
+                    MetaValidationHelper.IsValidMetaContent(tag.Content))
                 {
-                    Name = tag.Name.Trim(),
-                    Content = tag.Content.Trim()
-                };
-
-                page.Header.Controls.Add(meta);
+                    var meta = new HtmlMeta
+                    {
+                        Name = tag.Name.Trim(),
+                        Content = tag.Content.Trim()
+                    };
+                    page.Header.Controls.Add(meta);
+                }
             }
         }
 
@@ -153,21 +148,17 @@ namespace UpendoVentures.SkinObjects.OpenContentHelper
 
             foreach (var tag in linkTags)
             {
-                if (tag == null || string.IsNullOrWhiteSpace(tag.Href))
-                    continue;
+                if (MetaValidationHelper.IsValidHref(tag.Href))
+                {
+                    var link = new HtmlLink { Href = tag.Href.Trim() };
 
-                // Prevent javascript: or data: schemes
-                if (!IsSafeHref(tag.Href))
-                    continue;
+                    if (MetaValidationHelper.IsValidRel(tag.Rel)) link.Attributes["rel"] = tag.Rel.Trim();
+                    if (!string.IsNullOrWhiteSpace(tag.Type)) link.Attributes["type"] = tag.Type.Trim();
+                    if (!string.IsNullOrWhiteSpace(tag.Hreflang)) link.Attributes["hreflang"] = tag.Hreflang.Trim();
+                    if (MetaValidationHelper.IsValidSizes(tag.Sizes)) link.Attributes["sizes"] = tag.Sizes.Trim();
 
-                var link = new HtmlLink { Href = tag.Href.Trim() };
-
-                if (IsSafeValue(tag.Rel)) link.Attributes["rel"] = tag.Rel.Trim();
-                if (IsSafeValue(tag.Type)) link.Attributes["type"] = tag.Type.Trim();
-                if (IsSafeValue(tag.Hreflang)) link.Attributes["hreflang"] = tag.Hreflang.Trim();
-                if (IsSafeValue(tag.Sizes)) link.Attributes["sizes"] = tag.Sizes.Trim();
-
-                page.Header.Controls.Add(link);
+                    page.Header.Controls.Add(link);
+                }
             }
         }
 

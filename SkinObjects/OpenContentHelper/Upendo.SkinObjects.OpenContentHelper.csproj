@@ -75,6 +75,7 @@
     <Reference Include="System.Web.Entity" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\MetaValidationHelper.cs" />
     <Compile Include="Components\SkinObjectModuleBase.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
