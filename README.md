@@ -1,3 +1,15 @@
+# Upendo.OpenContentHelper  
+> **Upendo.OpenContentHelper** is an installable DNN skin object, created using the Upendo DNN Generator, that dynamically injects `<meta>` and `<link>` tags into the `<head>` of your pages based on structured content from an OpenContent module.
+>
+> ✅ Easily manage SEO metadata, Open Graph tags, canonical URLs, favicons, and more — all through OpenContent  
+> 🎯 Automatically scans for a configured OpenContent module on the current page and injects its metadata into the `<head>`  
+> 🔒 Includes built-in validation to reject unsafe or malformed data (with throttled logging)  
+> 🧠 Perfect for editor-managed sites — no need to modify themes or write custom scripts  
+>
+> This is the cleanest way to empower your non-developer users to manage metadata in a structured, secure, and scalable way across your DNN website.
+
+---  
+
 Hello, fellow DNN'er!  
 
 This solution was built using the [Upendo DNN Generator](https://github.com/UpendoVentures/generator-upendodnn#readme).  Anything you need to know about using this tool can be found there.  
@@ -5,6 +17,11 @@ This solution was built using the [Upendo DNN Generator](https://github.com/Upen
 However, the rest of the `README` below is quite detailed in explaining how this solution is expected to work.  Have fun writing code!  
 
 <hr />  
+
+## 🛠️ Need SLA-Based Support?  
+If you need more help than what we can provide here, we'd be happy to help you via [Upendo DNN Support](https://upendodnn.com).  
+
+>  😎 This is an **officially supported** extension! 🙌🏽   [DNN Extensions with Support](https://upendodnn.com/Extensions)  
 
 ## `Sponsors == (typeOf superHuman) Awesome;`  
 
