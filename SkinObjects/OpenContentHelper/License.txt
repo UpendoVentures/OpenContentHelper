@@ -1,0 +1,3 @@
+<p>OpenContentHelper SkinObjects Extension for DNN</p>
+<p>UpendoVentures <a href="https://upendodnn.com" target="_blank">https://upendodnn.com</a></p>
+<p>Your License Here</p>
