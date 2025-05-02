@@ -38,7 +38,7 @@
         <component type="SkinObject">
           <moduleControl>
             <controlKey>View</controlKey>
-            <controlSrc>DesktopModules/OpenContentHelper/View.ascx</controlSrc>
+            <controlSrc>DesktopModules/Upendo.OpenContentHelper/View.ascx</controlSrc>
             <supportsPartialRendering>False</supportsPartialRendering>
           </moduleControl>
         </component>
