@@ -15,8 +15,7 @@
 		<p>THANK YOU to the following rockstars!</p>
 		<ul>
 			<li>Adam Bernstein, <a href="https://practicewise.com/" target="_blank">PracticeWise</a></li>
-			<li>Jeremy Farrance, <a href="https://accuraty.com/" target="_blank">Accuraty</a></li>
-			<li><a href="http://www.rammware.net/" target="_blank">John Ramminger</a></li>
+		<li><a href="https://github.com/puresystems" target="_blank">PureSystems</a></li>
 			<li><em>2 private sponsors</em></li>
 		</ul>
 		<p>NOTE: <em>This list does not include our valued <a href="https://upendodnn.com" target="_blank">Upendo DNN Support</a> clients.</em> 💪🏽🙏🏽</p>
@@ -34,6 +33,33 @@
 		</ul>
 		<hr />
 
+		<h3>Version 01.04.00</h3>
+		<h4>Enhancements</h4>
+		<ul>
+			<li>Improved DNN module packaging process to ensure more reliable and complete install packages, including better handling of assets (CSS, JS, images, Razor views, fonts, etc.).</li>
+			<li>Added automated version synchronization during builds to keep assembly, manifest, and package versions aligned.</li>
+			<li>Introduced shared constants library to standardize commonly used values (e.g., paths, symbols, Bootstrap classes, and FontAwesome icons) and reduce hardcoded strings.</li>
+			<li>Expanded metadata validation capabilities to support additional valid meta tag names and link rel values (e.g., <code>theme-color</code>, <code>apple-touch-icon</code>).</li>
+			<li>Improved logging and diagnostics for meta tag validation, including debug-level logging and safer error handling.</li>
+			<li>Added foundational data models (e.g., <code>CategoryDto</code>, <code>PagedResult</code>) to support future enhancements like filtering, paging, and structured data handling.</li>
+			<li>Introduced repository-level development guidance for contributors and AI-assisted development to ensure consistency with DNN and .NET Framework 4.8 best practices.</li>
+			<!--
+			<li>SI:  (<a href="https://github.com/UpendoVentures/OpenContentHelper/issues/" target="_blank">Issue </a>, thanks <a href="https://github.com/" target="_blank">@</a>!)</li>
+			-->
+		</ul>
+		<h4>Maintenence &amp Bug Fixes</h4>
+		<ul>
+			<li>Fixed edge cases in meta tag validation to allow valid attributes while still preventing unsafe or malformed values.</li>
+			<li>Improved error handling in validation routines to prevent silent failures and reduce risk of runtime issues.</li>
+			<li>Refactored code to replace hardcoded values with centralized constants for improved maintainability and consistency.</li>
+			<li>Cleaned up build and packaging scripts to remove unnecessary exclusions and improve reliability across environments.</li>
+			<li>General codebase cleanup and alignment with established coding standards and project structure.</li>
+			<!--
+			<li> (<a href="https://github.com/UpendoVentures/OpenContentHelper/issues/" target="_blank">Issue </a>, thanks <a href="https://github.com/" target="_blank">@</a>!)</li>
+			-->
+		</ul>
+		<hr />
+
 		<h3>Version 01.01.00</h3>
 		<h4>Enhancements</h4>
 		<ul>
@@ -43,13 +69,6 @@
 			-->
 		</ul>
 		<h4>Maintenence &amp Bug Fixes</h4>
-		<ul>
-			<li>None at this time.</li>
-			<!--
-			<li> (<a href="https://github.com/UpendoVentures/OpenContentHelper/issues/" target="_blank">Issue </a>, thanks <a href="https://github.com/" target="_blank">@</a>!)</li>
-			-->
-		</ul>
-		<h4>Tasks &amp Technical Debt</h4>
 		<ul>
 			<li>None at this time.</li>
 			<!--
