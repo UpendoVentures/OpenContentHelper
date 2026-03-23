@@ -17,6 +17,7 @@ OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 using DotNetNuke.Entities.Portals;
+using DotNetNuke.Instrumentation;
 using DotNetNuke.Services.Log.EventLog;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,7 @@ namespace Upendo.SkinObjects.OpenContentHelper.Components
 {
     public static class MetaValidationHelper
     {
+        private static readonly ILog Logger = LoggerSource.Instance.GetLogger(typeof(MetaValidationHelper));
         private const int MaxContentLength = 500;
         private const int MaxHrefLength = 2048;
         private const int MaxAttrLength = 128;
@@ -34,12 +36,12 @@ namespace Upendo.SkinObjects.OpenContentHelper.Components
 
         private static readonly HashSet<string> AllowedMetaNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
         {
-            "author", "generator", "application-name", "robots", "N/A"
+            "author", "generator", "application-name", "robots", "name", "designer", "theme-color", "msapplication-TileColor", "msapplication-TileImage", "N/A"
         };
 
         private static readonly HashSet<string> AllowedRelValues = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
         {
-            "canonical", "icon", "stylesheet", "author", "alternate", "help", "license", "next", "prev", "search"
+            "canonical", "icon", "stylesheet", "author", "alternate", "help", "license", "next", "prev", "search", "apple-touch-icon"
         };
 
         private static readonly Regex ValidSizesPattern = new Regex(@"^(\d+x\d+|any)$", RegexOptions.IgnoreCase);
@@ -58,9 +60,10 @@ namespace Upendo.SkinObjects.OpenContentHelper.Components
 
         public static bool IsValidMetaProperty(string property)
         {
+            var trimmedProperty = property?.Trim();
             var valid = !string.IsNullOrWhiteSpace(property) &&
                         property.Length <= MaxAttrLength &&
-                        ValidMetaPropertyPattern.IsMatch(property.Trim());
+                        (ValidMetaPropertyPattern.IsMatch(trimmedProperty) || AllowedMetaNames.Contains(trimmedProperty));
 
             if (!valid) LogRejection("MetaTag.Property", property);
             return valid;
@@ -120,6 +123,11 @@ namespace Upendo.SkinObjects.OpenContentHelper.Components
 
             try
             {
+                if (Logger.IsDebugEnabled)
+                {
+                    Logger.DebugFormat($"Rejected OpenContent Head Tag (Field: {field}, Value: {value})");
+                }
+                
                 EventLogController.Instance.AddLog(
                     "Rejected OpenContent Head Tag",
                     $"Field: {field}, Value: {value}",
@@ -130,9 +138,22 @@ namespace Upendo.SkinObjects.OpenContentHelper.Components
 
                 context.Items[RejectionLoggedKey] = true; // prevent further logs this request to prevent log flooding
             }
-            catch
+            catch (Exception ex)
             {
                 // suppress any log failures
+                LogError(ex);
+            }
+        }
+        
+        private static void LogError(Exception ex)
+        {
+            if (ex != null)
+            {
+                Logger.Error(ex.Message, ex);
+                if (ex.InnerException != null)
+                {
+                    Logger.Error(ex.InnerException.Message, ex.InnerException);
+                }
             }
         }
     }
