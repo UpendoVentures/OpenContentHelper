@@ -1,5 +1,5 @@
-/*
-Copyright � Upendo Ventures, LLC
+﻿/*
+Copyright © Upendo Ventures, LLC
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
 associated documentation files (the "Software"), to deal in the Software without restriction,
@@ -16,19 +16,30 @@ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FO
 OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-using DotNetNuke.UI.Skins; 
-using Upendo.SkinObjects.OpenContentHelper.Common;
 
-namespace Upendo.SkinObjects.OpenContentHelper.Components
+using System.Data.SqlClient;
+using DotNetNuke.Common.Utilities;
+
+namespace Upendo.SkinObjects.OpenContentHelper.Helpers
 {
-    public class OpenContentHelperModuleBase : SkinObjectBase 
-	{
-        public string ControlPath 
-		{
-            get 
-			{
-                return string.Concat(TemplateSourceDirectory, Constants.Slash); 
-            }
+    public class ConfigBase
+    {
+        public static string GetConnectionString()
+        {
+            // DNN standard:
+            // - ConnectionStrings["SiteSqlServer"] in web.config
+            // DotNetNuke.Common.Utilities.Config has helpers, but this is explicit.
+            return System.Configuration.ConfigurationManager.ConnectionStrings[Common.Constants.ConnectionStringName].ConnectionString;
+        }
+        
+        public static SqlConnection GetOpenConnection()
+        {
+            // Uses the DNN site DB connection string
+            // DNN typically stores it under "SiteSqlServer"
+            var cs = Config.GetConnectionString();
+            var cn = new SqlConnection(cs);
+            cn.Open();
+            return cn;
         }
     }
 }

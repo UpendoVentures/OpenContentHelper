@@ -1,5 +1,5 @@
-/*
-Copyright � Upendo Ventures, LLC
+﻿/*
+Copyright © Upendo Ventures, LLC
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
 associated documentation files (the "Software"), to deal in the Software without restriction,
@@ -16,19 +16,20 @@ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FO
 OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-using DotNetNuke.UI.Skins; 
-using Upendo.SkinObjects.OpenContentHelper.Common;
 
-namespace Upendo.SkinObjects.OpenContentHelper.Components
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace Upendo.SkinObjects.OpenContentHelper.Entities
 {
-    public class OpenContentHelperModuleBase : SkinObjectBase 
-	{
-        public string ControlPath 
-		{
-            get 
-			{
-                return string.Concat(TemplateSourceDirectory, Constants.Slash); 
-            }
-        }
+    public sealed class PagedResult<T>
+    {
+        public IReadOnlyList<T> Items { get; set; } = Array.Empty<T>();
+        public int TotalCount { get; set; }
+        public int Page { get; set; }
+        public int PageSize { get; set; }
+        public int TotalPages => PageSize <= 0 ? 0 : (int)Math.Ceiling((double)TotalCount / PageSize);
     }
 }
