@@ -1,0 +1,105 @@
+﻿using System;
+using Upendo.OpenContentHelper.Features.Events.Helpers;
+using Upendo.OpenContentHelper.Features.Events.Models;
+
+namespace Upendo.OpenContentHelper.Features.Events
+{
+    public static class EventFacade
+    {
+        public static EventListViewModel GetListViewModel(EventListRequest request, string listPagePath, string detailPagePath)
+        {
+            if (request == null)
+            {
+                throw new ArgumentNullException("request");
+            }
+
+            var normalizedRequest = EventRequestHelper.NormalizeListRequest(request);
+            var service = EventServiceFactory.Create();
+
+            var results = service.ListEvents(normalizedRequest);
+            var categories = service.ListCategoriesForPortal(normalizedRequest.PortalId, normalizedRequest.IsUpcoming);
+            var tags = service.ListTrendingTags(normalizedRequest.PortalId, normalizedRequest.IsUpcoming, 10);
+            var organizers = service.ListTopOrganizers(normalizedRequest.PortalId, normalizedRequest.IsUpcoming, 5);
+
+            return new EventListViewModel
+            {
+                Request = normalizedRequest,
+                Results = results,
+                ListPagePath = EventPageUrlHelper.BuildListPageUrl(listPagePath),
+                DetailPagePath = EventPageUrlHelper.BuildDetailBasePageUrl(detailPagePath),
+                EmptyStateTitle = "No Events Found",
+                EmptyStateText = "There are no events matching the current filters.",
+                ActiveCategories = categories,
+                TrendingTags = tags,
+                TopOrganizers = organizers,
+                ActiveCategorySlug = normalizedRequest.CategorySlug,
+                ActiveTagSlug = normalizedRequest.TagSlug,
+                ActiveOrganizerSlug = normalizedRequest.OrganizerSlug
+            };
+        }
+
+        public static EventDetailViewModel GetDetailViewModel(int portalId, string slug, string listPagePath, string detailPagePath, int relatedMaxResults)
+        {
+            if (portalId < 0)
+            {
+                throw new ArgumentOutOfRangeException("portalId");
+            }
+
+            var normalizedSlug = EventRequestHelper.NormalizeSlug(slug);
+            var normalizedListPagePath = EventPageUrlHelper.BuildListPageUrl(listPagePath);
+            var normalizedDetailPagePath = EventPageUrlHelper.BuildDetailBasePageUrl(detailPagePath);
+            var normalizedRelatedMaxResults = EventRequestHelper.NormalizeRelatedMaxResults(relatedMaxResults);
+
+            var vm = new EventDetailViewModel
+            {
+                ListPagePath = normalizedListPagePath,
+                DetailPagePath = normalizedDetailPagePath,
+                RequestedSlug = normalizedSlug,
+                EventFound = false,
+                FriendlyMessageTitle = "We Couldn’t Find That Event",
+                FriendlyMessageBody = "The event you were looking for may have been removed, renamed, or the link may be incomplete."
+            };
+
+            if (string.IsNullOrWhiteSpace(normalizedSlug))
+            {
+                vm.FriendlyMessageBody = "The event link appears to be incomplete. Please return to the events page and choose an event.";
+                return vm;
+            }
+
+            var service = EventServiceFactory.Create();
+            var evt = service.GetEventDetail(portalId, normalizedSlug, normalizedRelatedMaxResults);
+
+            if (evt == null)
+            {
+                return vm;
+            }
+
+            vm.Event = evt;
+            vm.EventFound = true;
+            vm.IcsDownloadUrl = EventPageUrlHelper.BuildIcsDownloadUrl(EventConstants.EndpointCalendar, normalizedSlug);
+
+            return vm;
+        }
+
+        public static EventDetailViewModel GetDetailViewModel(int portalId, string slug, string listPagePath, string detailPagePath)
+        {
+            return GetDetailViewModel(portalId, slug, listPagePath, detailPagePath, 3);
+        }
+
+        public static EventDetailDto GetEventSummary(int portalId, string slug)
+        {
+            if (portalId < 0)
+            {
+                throw new ArgumentOutOfRangeException("portalId");
+            }
+
+            if (string.IsNullOrWhiteSpace(slug))
+            {
+                throw new ArgumentException("slug is required.", "slug");
+            }
+
+            var service = EventServiceFactory.Create();
+            return service.GetEventSummary(portalId, EventRequestHelper.NormalizeSlug(slug));
+        }
+    }
+}

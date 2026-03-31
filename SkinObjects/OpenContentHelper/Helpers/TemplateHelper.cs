@@ -17,14 +17,21 @@ OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+using AngleSharp.Dom;
 using DotNetNuke.Entities.Modules;
+using DotNetNuke.Entities.Portals;
+using Ganss.Xss;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web;
 
 namespace Upendo.SkinObjects.OpenContentHelper.Helpers
 {
     public static class TemplateHelper
     {
+        private static readonly Lazy<HtmlSanitizer> RenderSanitizer = new Lazy<HtmlSanitizer>(CreateRenderSanitizer);
+
         public static void HideAdminBorder(int moduleID, int tabID)
         {
             ModuleInfo currentModule = ModuleController.Instance.GetModule(moduleID, tabID, false);
@@ -65,6 +72,182 @@ namespace Upendo.SkinObjects.OpenContentHelper.Helpers
             }
 
             return !uri.Host.Equals(currentHost, StringComparison.OrdinalIgnoreCase);
+        }
+
+        public static bool CurrentUserCanEdit()
+        {
+            var currentUser = DotNetNuke.Entities.Users.UserController.Instance.GetCurrentUserInfo();
+            return currentUser.IsSuperUser || currentUser.IsInRole(PortalSettings.Current.AdministratorRoleName);
+        }
+
+        public static string BuildAbsoluteUrl(string url)
+        {
+            if (string.IsNullOrWhiteSpace(url))
+            {
+                return string.Empty;
+            }
+
+            Uri absoluteUri;
+            if (Uri.TryCreate(url, UriKind.Absolute, out absoluteUri))
+            {
+                return absoluteUri.ToString();
+            }
+
+            var request = HttpContext.Current != null ? HttpContext.Current.Request : null;
+            if (request == null || request.Url == null)
+            {
+                return url;
+            }
+
+            var baseUri = request.Url.GetLeftPart(UriPartial.Authority);
+            return new Uri(new Uri(baseUri), url).ToString();
+        }
+
+        public static string GetInitials(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                return "?";
+            }
+
+            var parts = name.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+            if (parts.Length == 1)
+            {
+                return parts[0].Substring(0, 1).ToUpperInvariant();
+            }
+
+            return (parts[0][0].ToString() + parts[parts.Length - 1][0].ToString()).ToUpperInvariant();
+        }
+
+        public static string RenderRichTextHtml(string html)
+        {
+            if (string.IsNullOrWhiteSpace(html))
+            {
+                return string.Empty;
+            }
+
+            var sanitizer = RenderSanitizer.Value;
+            var document = sanitizer.SanitizeDom(html);
+
+            var requestUrl = HttpContext.Current != null ? HttpContext.Current.Request?.Url : null;
+            var currentHost = requestUrl != null ? requestUrl.Host : null;
+
+            foreach (var link in document.QuerySelectorAll("a").OfType<IElement>())
+            {
+                var href = link.GetAttribute("href");
+                if (string.IsNullOrWhiteSpace(href))
+                {
+                    continue;
+                }
+
+                if (!IsExternalAbsoluteUrl(href, currentHost))
+                {
+                    continue;
+                }
+
+                link.SetAttribute("target", "_blank");
+                link.SetAttribute("rel", MergeRelToken(link.GetAttribute("rel"), "noopener"));
+                //link.SetAttribute("rel", MergeRelToken(MergeRelToken(link.GetAttribute("rel"), "noopener"), "noreferrer"));
+            }
+
+            return document.Body != null ? document.Body.InnerHtml : string.Empty;
+        }
+
+        private static HtmlSanitizer CreateRenderSanitizer()
+        {
+            var sanitizer = new HtmlSanitizer();
+
+            sanitizer.AllowedTags.Clear();
+            sanitizer.AllowedAttributes.Clear();
+            sanitizer.AllowedSchemes.Clear();
+            sanitizer.UriAttributes.Clear();
+
+            foreach (var tag in new[]
+            {
+        "p",
+        "br",
+        "strong",
+        "b",
+        "em",
+        "i",
+        "ul",
+        "ol",
+        "li",
+        "a"
+    })
+            {
+                sanitizer.AllowedTags.Add(tag);
+            }
+
+            foreach (var attribute in new[]
+            {
+        "href",
+        "target",
+        "rel"
+    })
+            {
+                sanitizer.AllowedAttributes.Add(attribute);
+            }
+
+            sanitizer.UriAttributes.Add("href");
+
+            foreach (var scheme in new[]
+            {
+        "http",
+        "https",
+        "mailto",
+        "tel"
+    })
+            {
+                sanitizer.AllowedSchemes.Add(scheme);
+            }
+
+            sanitizer.AllowDataAttributes = false;
+
+            return sanitizer;
+        }
+
+        private static bool IsExternalAbsoluteUrl(string url, string currentHost)
+        {
+            if (string.IsNullOrWhiteSpace(url) || string.IsNullOrWhiteSpace(currentHost))
+            {
+                return false;
+            }
+
+            Uri uri;
+            if (!Uri.TryCreate(url, UriKind.Absolute, out uri))
+            {
+                return false;
+            }
+
+            if (!uri.Scheme.Equals(Uri.UriSchemeHttp, StringComparison.OrdinalIgnoreCase) &&
+                !uri.Scheme.Equals(Uri.UriSchemeHttps, StringComparison.OrdinalIgnoreCase))
+            {
+                return false;
+            }
+
+            return !uri.Host.Equals(currentHost, StringComparison.OrdinalIgnoreCase);
+        }
+
+        private static string MergeRelToken(string rel, string tokenToAdd)
+        {
+            var tokens = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+            if (!string.IsNullOrWhiteSpace(rel))
+            {
+                foreach (var token in rel.Split(new[] { ' ', '\t', '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    tokens.Add(token.Trim());
+                }
+            }
+
+            if (!string.IsNullOrWhiteSpace(tokenToAdd))
+            {
+                tokens.Add(tokenToAdd.Trim());
+            }
+
+            return string.Join(" ", tokens);
         }
 
         public static class Arrays
