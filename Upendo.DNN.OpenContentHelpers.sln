@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build Files", "Build Files", "{F84D698C-3163-472D-95E9-EC36712D597B}"
 	ProjectSection(SolutionItems) = preProject
@@ -16,6 +16,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configuration Files", "Configuration Files", "{B51AA4AF-EE33-49E1-B621-DF1BCD22A28C}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		.github\copilot-instructions.md = .github\copilot-instructions.md
 		Directory.Packages.props = Directory.Packages.props
 		Website\DotNetNuke.log4net.config = Website\DotNetNuke.log4net.config
 		README.md = README.md

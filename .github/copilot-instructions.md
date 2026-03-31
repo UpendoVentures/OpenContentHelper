@@ -65,6 +65,12 @@ You use Visual Studio Enterprise for running, debugging, and testing DNN (DotNet
 - Always create a matching entity class when creating a new table, such as ForumUserInfo, ForumPostInfo, etc., in the Entities folder.
 - When adding a new SqlDataProvider, always offer to update the DNN manifest file (DnnCommunityForums.dnn) to reference the new version, ensuring it is compatible with DNN's upgrade process.
  
+## String Handling  
+- Use string.Emtpy or string.IsNullOrEmpty for checking empty strings, and string.IsNullOrWhiteSpace for checking whitespace.
+- Use string.Empty instead of "" for empty string literals. 
+- When concatenating strings, use `string.Concat` instead of `+` whenever possible to reduce the number of string objects on the heap. 
+- Use static or constant strings when the same string value is used multiple times in the codebase, to improve maintainability and reduce the risk of typos.  
+ 
 ## Caching Strategies
 - Implement in-memory caching for all Controllers and services to improve performance and reduce database load.
 - Caching should use methods in Cache.cs, such as ContentCacheRetrieve, ContentCacheStore, and ContentCacheRemove for content, and SettingsCache, SettingsCacheRetrieve, and SettingsCacheStore for settings.
