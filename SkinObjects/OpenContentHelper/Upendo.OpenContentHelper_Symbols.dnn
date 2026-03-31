@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <dotnetnuke type="Package" version="6.0">
   <packages>
-    <package name="Upendo.SkinObjects.OpenContentHelper_Symbols" type="Library" version="01.04.00">
+    <package name="Upendo.SkinObjects.OpenContentHelper_Symbols" type="Library" version="01.05.07">
       <friendlyName>OpenContentHelper Skin Object Symbols</friendlyName>
       <description><![CDATA[A helper theme object used to aid operations needed by the OpenContentTemplates-Razor project.]]></description>
       <iconFile>~/DesktopModules/Upendo.OpenContentHelper/Images/logo.png</iconFile>
@@ -15,7 +15,7 @@
       <releaseNotes src="ReleaseNotes.txt" />
       <azureCompatible>True</azureCompatible>
       <dependencies>
-        <dependency type="managedPackage" version="1.4.0">Upendo.SkinObjects.OpenContentHelper</dependency>
+        <dependency type="managedPackage" version="1.5.7">Upendo.SkinObjects.OpenContentHelper</dependency>
       </dependencies>
       <components>
         <component type="ResourceFile">

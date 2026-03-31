@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dotnetnuke type="Package" version="6.0">
+  <packages>
+    <package name="Upendo.Modules.UpendoEventsForm_Symbols" type="Library" version="01.00.06">
+      <friendlyName>Upendo Events Management Module Symbols</friendlyName>
+      <description><![CDATA[A form that allows authorized visitors to add &amp; edit events. Requires an OpenContent template to view the events on the website.]]></description>
+      <iconFile>~/DesktopModules/UpendoEventsForm/Images/logo.png</iconFile>
+      <owner>
+        <name>Will Strohl</name>
+        <organization>Upendo Ventures, LLC</organization>
+        <url>https://upendodnn.com</url>
+        <email>solutions@upendoventures.com</email>
+      </owner>
+      <license src="License.txt" />
+      <releaseNotes src="ReleaseNotes.txt" />
+      <azureCompatible>True</azureCompatible>
+      <dependencies>
+        <dependency type="managedPackage" version="1.0.6">Upendo.Modules.UpendoEventsForm</dependency>
+      </dependencies>
+      <components>
+        <component type="ResourceFile">
+          <resourceFiles>
+            <basePath></basePath>
+            <resourceFile>
+              <name>Resources.zip</name>
+            </resourceFile>
+          </resourceFiles>
+        </component>
+      </components>
+    </package>
+  </packages>
+</dotnetnuke>

@@ -61,6 +61,9 @@
     <PackageReference Include="Google.Cloud.RecaptchaEnterprise.V1">
       <Version>2.18.0</Version>
     </PackageReference>
+    <PackageReference Include="HtmlSanitizer">
+      <Version>9.0.892</Version>
+    </PackageReference>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
   <ItemGroup>
@@ -82,19 +85,84 @@
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\EventsController.cs" />
+    <Compile Include="Features\Analytics\AnalyticsCacheHelper.cs" />
+    <Compile Include="Features\Analytics\AnalyticsRepository.cs" />
+    <Compile Include="Features\Analytics\AnalyticsService.cs" />
+    <Compile Include="Features\Analytics\IAnalyticsRepository.cs" />
+    <Compile Include="Features\Analytics\IAnalyticsService.cs" />
+    <Compile Include="Features\Analytics\Models\Responses\AnalyticsWidgetSettingsDto.cs" />
+    <Compile Include="Features\Analytics\Models\Responses\AnalyticsChannelBreakdownDto.cs" />
+    <Compile Include="Features\Analytics\Models\Responses\AnalyticsComparisonSummaryDto.cs" />
+    <Compile Include="Features\Analytics\Models\Responses\AnalyticsDashboardDto.cs" />
+    <Compile Include="Features\Analytics\Models\AnalyticsDataSourceDto.cs" />
+    <Compile Include="Features\Analytics\Models\Requests\AnalyticsDateRangeRequestDto.cs" />
+    <Compile Include="Features\Analytics\Models\Responses\AnalyticsEventBreakdownDto.cs" />
+    <Compile Include="Features\Analytics\Models\AnalyticsFactChannelDailyDto.cs" />
+    <Compile Include="Features\Analytics\Models\AnalyticsFactPageDailyDto.cs" />
+    <Compile Include="Features\Analytics\Models\AnalyticsImportBatchDto.cs" />
+    <Compile Include="Features\Analytics\Models\Import\AnalyticsImportBatchSummaryDto.cs" />
+    <Compile Include="Features\Analytics\Models\AnalyticsSiteDto.cs" />
+    <Compile Include="Features\Analytics\Models\Import\AnalyticsStageDailyDto.cs" />
+    <Compile Include="Features\Analytics\Models\Import\AnalyticsStageDailyValidationResultDto.cs" />
+    <Compile Include="Features\Analytics\Models\Responses\AnalyticsSummaryDto.cs" />
+    <Compile Include="Features\Analytics\Models\Requests\AnalyticsTopNRequestDto.cs" />
+    <Compile Include="Features\Analytics\Models\Responses\AnalyticsTopPageDto.cs" />
+    <Compile Include="Features\Analytics\Models\Responses\AnalyticsTrendPointDto.cs" />
+    <Compile Include="Features\Analytics\Models\Responses\ApiResultDto.cs" />
+    <Compile Include="Features\Analytics\Models\Requests\CreateAnalyticsDataSourceRequestDto.cs" />
+    <Compile Include="Features\Analytics\Models\Requests\CreateAnalyticsImportBatchRequestDto.cs" />
+    <Compile Include="Features\Analytics\Models\Requests\CreateAnalyticsSiteRequestDto.cs" />
+    <Compile Include="Features\Analytics\Models\Requests\UpdateAnalyticsDataSourceRequestDto.cs" />
+    <Compile Include="Features\Analytics\Models\Requests\UpdateAnalyticsSiteRequestDto.cs" />
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Components\MetaValidationHelper.cs" />
     <Compile Include="Components\SkinObjectModuleBase.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Entities\CategoryDto.cs" />
+    <Compile Include="Entities\CompanyDetail.cs" />
+    <Compile Include="Entities\CompanyDirectoryItem.cs" />
+    <Compile Include="Entities\DirectorySearchRequest.cs" />
     <Compile Include="Entities\PagedResult.cs" />
+    <Compile Include="Features\Events\Data\IEventRepository.cs" />
+    <Compile Include="Features\Events\Data\SqlEventRepository.cs" />
+    <Compile Include="Features\Events\EventConstants.cs" />
+    <Compile Include="Features\Events\EventFacade.cs" />
+    <Compile Include="Features\Events\EventServiceFactory.cs" />
+    <Compile Include="Features\Events\Helpers\EventCalendarHelper.cs" />
+    <Compile Include="Features\Events\Helpers\EventFormattingHelper.cs" />
+    <Compile Include="Features\Events\Helpers\EventPageUrlHelper.cs" />
+    <Compile Include="Features\Events\Helpers\EventRequestHelper.cs" />
+    <Compile Include="Features\Events\Helpers\EventsCacheHelper.cs" />
+    <Compile Include="Features\Events\Helpers\EventSlugHelper.cs" />
+    <Compile Include="Features\Events\Helpers\EventUrlHelper.cs" />
+    <Compile Include="Features\Events\Models\EventAudienceDto.cs" />
+    <Compile Include="Features\Events\Models\EventCalendarMetadataDto.cs" />
+    <Compile Include="Features\Events\Models\EventCategoryDto.cs" />
+    <Compile Include="Features\Events\Models\EventContentSectionDto.cs" />
+    <Compile Include="Features\Events\Models\EventDetailDto.cs" />
+    <Compile Include="Features\Events\Models\EventDetailViewModel.cs" />
+    <Compile Include="Features\Events\Models\EventFeatureDto.cs" />
+    <Compile Include="Features\Events\Models\EventListItemDto.cs" />
+    <Compile Include="Features\Events\Models\EventListRequest.cs" />
+    <Compile Include="Features\Events\Models\EventListViewModel.cs" />
+    <Compile Include="Features\Events\Models\EventOrganizerDto.cs" />
+    <Compile Include="Features\Events\Models\EventTagDto.cs" />
+    <Compile Include="Features\Events\Models\EventVenueDto.cs" />
+    <Compile Include="Features\Events\Models\PagedResult.cs" />
+    <Compile Include="Features\Events\Services\EventService.cs" />
+    <Compile Include="Features\Events\Services\IEventService.cs" />
     <Compile Include="Helpers\ConfigBase.cs" />
     <Compile Include="Helpers\DataHandler.cs" />
+    <Compile Include="Helpers\DirectoryHelper.cs" />
     <Compile Include="Helpers\FormatHelper.cs" />
     <Compile Include="Helpers\LiveFormsReportController .cs" />
+    <Compile Include="Controllers\AnalyticsReportController.cs" />
     <Compile Include="Helpers\TemplateHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="View.ascx.cs">
@@ -124,7 +192,6 @@
     <Content Include="SkinObject.Build" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controllers\" />
     <Folder Include="Scripts\" />
     <Folder Include="Styles\" />
   </ItemGroup>
