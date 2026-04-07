@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <dotnetnuke type="Package" version="6.0">
   <packages>
-    <package name="Upendo.SkinObjects.OpenContentHelper" type="SkinObject" version="01.05.07">
+    <package name="Upendo.SkinObjects.OpenContentHelper" type="SkinObject" version="01.07.04">
       <friendlyName>Upendo.OpenContentHelper</friendlyName>
       <description>A helper theme object used to aid operations needed by the OpenContentTemplates-Razor project.</description>
       <iconFile>~/DesktopModules/Upendo.OpenContentHelper/Images/logo.png</iconFile>
@@ -23,7 +23,7 @@
             <assembly>
               <path>bin</path>
               <name>Upendo.SkinObjects.OpenContentHelper.dll</name>
-              <version>01.05.07</version>
+              <version>01.07.04</version>
             </assembly>
           </assemblies>
         </component>

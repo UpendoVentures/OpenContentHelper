@@ -1,0 +1,165 @@
+.bdm-page .card {
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 0.5rem;
+}
+
+.bdm-page .card-body h2 {
+    font-weight: 600;
+}
+
+.bdm-page .form-text {
+    font-size: 0.875rem;
+}
+
+.bdm-page .badge {
+    font-weight: 600;
+}
+
+.bdm-page .btn-group-sm > .btn,
+.bdm-page .btn-sm {
+    white-space: nowrap;
+}
+
+.bdm-page select[multiple] {
+    min-height: 180px;
+}
+
+.bdm-page .alert {
+    margin-bottom: 1.5rem;
+}
+
+.bdm-page .table-responsive {
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    background-color: #ffffff;
+}
+
+.bdm-page .table {
+    margin-bottom: 0;
+}
+
+    .bdm-page .table td,
+    .bdm-page .table th {
+        vertical-align: middle;
+    }
+
+    .bdm-page .table thead th {
+        background-color: #f8f9fa;
+        font-size: 0.875rem;
+        font-weight: 600;
+        border-bottom-width: 1px;
+    }
+
+    .bdm-page .table tbody tr {
+        transition: background-color 0.15s ease-in-out;
+    }
+
+        .bdm-page .table tbody tr:hover {
+            background-color: rgba(0, 0, 0, 0.03);
+        }
+
+.bdm-page .pagination {
+    flex-wrap: wrap;
+}
+
+.bdm-page .page-link {
+    min-width: 2.25rem;
+    text-align: center;
+}
+
+.bdm-page .table td .small a {
+    font-weight: 500;
+    color: #495057;
+}
+
+    .bdm-page .table td .small a:hover,
+    .bdm-page .table td .small a:focus {
+        color: #0d6efd;
+        text-decoration: underline !important;
+    }
+
+.bdm-section-title {
+    color: #b22222;
+}
+
+.bdm-filter-card .card-body {
+    padding: 1.25rem;
+}
+
+.bdm-filter-card .form-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+}
+
+.bdm-featured-check {
+    min-height: 38px;
+    display: flex;
+    align-items: center;
+    padding-top: 1.9rem;
+}
+
+.bdm-results-summary {
+    padding-left: 0.125rem;
+    padding-right: 0.125rem;
+}
+
+.bdm-stat-card {
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-top-width: 4px;
+    background: linear-gradient(to bottom, #ffffff 0%, #fcfcfc 100%);
+}
+
+    .bdm-stat-card .card-body {
+        padding: 1rem 1rem 0.9rem;
+    }
+
+.bdm-stat-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: #6c757d;
+    margin-bottom: 0.35rem;
+}
+
+.bdm-stat-value {
+    font-size: 2rem;
+    line-height: 1;
+    font-weight: 700;
+    color: #212529;
+    margin-bottom: 0.35rem;
+}
+
+.bdm-stat-subtext {
+    font-size: 0.85rem;
+    color: #6c757d;
+}
+
+.bdm-stat-card-total {
+    border-top-color: #6c757d;
+}
+
+.bdm-stat-card-active {
+    border-top-color: #198754;
+}
+
+.bdm-stat-card-public {
+    border-top-color: #0d6efd;
+}
+
+.bdm-stat-card-featured {
+    border-top-color: #fd7e14;
+}
+
+.bdm-page .table td .fw-semibold {
+    margin-bottom: 0.15rem;
+}
+
+@media (max-width: 1199.98px) {
+    .bdm-featured-check {
+        padding-top: 0.5rem;
+        min-height: auto;
+    }
+}

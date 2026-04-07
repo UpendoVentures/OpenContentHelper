@@ -1,0 +1,92 @@
+<dotnetnuke type="Package" version="5.0">
+  <packages>
+    <package name="Upendo.Modules.BusinessDirectoryManager" type="Module" version="01.01.02">
+    <friendlyName>Upendo Business Directory Manager</friendlyName>
+      <description><![CDATA[<p>A module that lists and allows management of businesses which may be listed in various portals on a multi-portal instance of DNN.</p>]]></description>
+      <iconFile>DesktopModules/UpendoBusinessDirectoryManager/Images/logo.png</iconFile>
+      <owner>
+        <name>Will Strohl</name>
+        <organization>Upendo Ventures, LLC</organization>
+        <url><![CDATA[<a href="https://upendodnn.com" target="_blank">https://upendodnn.com</a>]]></url>
+        <email><![CDATA[<a href="mailto:solutions@upendoventures.com" target="_blank">solutions@upendoventures.com</a>]]></email>
+      </owner>
+      <license src="License.txt"></license>
+      <releaseNotes src="ReleaseNotes.txt"></releaseNotes>
+      <azureCompatible>true</azureCompatible>
+      <dependencies>
+        <dependency type="CoreVersion">09.13.00</dependency>
+      </dependencies>
+      
+      <components>
+
+        <component type="Module">
+          <desktopModule>
+            <moduleName>UpendoBusinessDirectoryManager</moduleName>
+            <foldername>UpendoBusinessDirectoryManager</foldername>
+            <businessControllerClass>Upendo.Modules.BusinessDirectoryManager.Components.FeatureController</businessControllerClass>
+            <supportedFeatures><supportedFeature type="Portable" /></supportedFeatures>
+            <moduleDefinitions>
+              <moduleDefinition>
+                <friendlyName>Upendo Business Directory Manager</friendlyName>
+                <defaultCacheTime>0</defaultCacheTime>
+                <moduleControls>
+                  <moduleControl>
+                    <controlKey />
+                    <controlSrc>DesktopModules/UpendoBusinessDirectoryManager/View.html</controlSrc>
+                    <supportsPartialRendering>False</supportsPartialRendering>
+                    <controlTitle />
+                    <controlType>View</controlType>
+                    <iconFile />
+                    <helpUrl />
+                    <viewOrder>0</viewOrder>
+                  </moduleControl>
+                  <moduleControl>
+                    <controlKey>QuickSettings</controlKey>
+                    <controlSrc>DesktopModules/UpendoBusinessDirectoryManager/Settings.html</controlSrc>
+                    <supportsPartialRendering>False</supportsPartialRendering>
+                    <controlTitle>Module Settings</controlTitle>
+                    <controlType>Admin</controlType>
+                    <iconFile />
+                    <helpUrl />
+                    <viewOrder>0</viewOrder>
+                  </moduleControl>
+                </moduleControls>
+              </moduleDefinition>
+            </moduleDefinitions>
+          </desktopModule>
+          <eventMessage>
+            <processorType>DotNetNuke.Entities.Modules.EventMessageProcessor, DotNetNuke</processorType>
+            <processorCommand>UpgradeModule</processorCommand>
+            <attributes>
+              <businessControllerClass>Upendo.Modules.BusinessDirectoryManager.Components.FeatureController, Upendo.Modules.BusinessDirectoryManager</businessControllerClass>
+              <desktopModuleID>[DESKTOPMODULEID]</desktopModuleID>
+              <upgradeVersionsList>01.01.02</upgradeVersionsList>
+            </attributes>
+          </eventMessage>
+        </component>
+        <component type="ResourceFile">
+          <resourceFiles>
+            <basePath>DesktopModules/UpendoBusinessDirectoryManager</basePath>
+            <resourceFile>
+              <name>Resources.zip</name>
+            </resourceFile>
+          </resourceFiles>
+        </component>
+        <component type="Assembly">
+          <assemblies>
+            <assembly>
+              <name>Upendo.Modules.BusinessDirectoryManager.dll</name>
+              <path>bin</path>
+              <version>01.01.02</version>
+            </assembly>
+            <assembly>
+              <name>Dapper.dll</name>
+              <path>bin</path>
+              <version>2.0.151</version>
+            </assembly>
+          </assemblies>
+        </component>
+      </components>
+    </package>
+  </packages>
+</dotnetnuke>

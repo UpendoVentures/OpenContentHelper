@@ -1,16 +1,15 @@
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("OpenContentHelper SkinObjects Extension for DNN")]
-[assembly: AssemblyDescription("A helper theme object used to aid operations needed by the OpenContentTemplates-Razor project.")]
+[assembly: AssemblyTitle("BusinessDirectoryManager")]
+[assembly: AssemblyDescription("A module that lists and allows management of businesses which may be listed in various portals on a multi-portal instance of DNN.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("UpendoVentures")]
-[assembly: AssemblyProduct("OpenContentHelper SkinObjects Extension for DNN")]
-[assembly: AssemblyCopyright("Copyright (C) UpendoVentures")]
+[assembly: AssemblyCompany("Upendo Ventures, LLC")]
+[assembly: AssemblyProduct("BusinessDirectoryManager Extension for DNN")]
+[assembly: AssemblyCopyright("Copyright © Upendo Ventures, LLC")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("664A14D9-BC4D-47FB-B8CA-D914FB211890")]
+[assembly: Guid("FFF61017-CDBB-4DF7-9C13-1151A5DA33B3")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -29,5 +28,7 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("01.07.04")]
-[assembly: AssemblyFileVersion("01.07.04")]
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+[assembly: AssemblyVersion("01.01.02")]
+[assembly: AssemblyFileVersion("01.01.02")]
