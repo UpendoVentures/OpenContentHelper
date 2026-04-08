@@ -124,11 +124,15 @@
     <Compile Include="Components\SkinObjectModuleBase.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Entities\CategoryDto.cs" />
-    <Compile Include="Entities\CompanyDetail.cs" />
-    <Compile Include="Entities\CompanyDirectoryItem.cs" />
-    <Compile Include="Entities\DirectorySearchRequest.cs" />
-    <Compile Include="Entities\PagedResult.cs" />
+    <Compile Include="Features\Directory\Models\CategoryDto.cs" />
+    <Compile Include="Features\Directory\Models\CompanyDetail.cs" />
+    <Compile Include="Features\Directory\Models\CompanyDirectoryItem.cs" />
+    <Compile Include="Features\Directory\Models\DirectorySearchRequest.cs" />
+    <Compile Include="Features\Directory\Models\PagedResult.cs" />
+    <Compile Include="Features\Directory\Common\DirectoryConstants.cs" />
+    <Compile Include="Features\Directory\Helpers\DirectoryPageUrlHelper.cs" />
+    <Compile Include="Features\Directory\Helpers\DirectoryRequestHelper.cs" />
+    <Compile Include="Features\Directory\Models\DirectoryListViewModel.cs" />
     <Compile Include="Features\Events\Data\IEventRepository.cs" />
     <Compile Include="Features\Events\Data\SqlEventRepository.cs" />
     <Compile Include="Features\Events\EventConstants.cs" />
@@ -157,9 +161,24 @@
     <Compile Include="Features\Events\Models\PagedResult.cs" />
     <Compile Include="Features\Events\Services\EventService.cs" />
     <Compile Include="Features\Events\Services\IEventService.cs" />
+    <Compile Include="Features\Seo\Data\ISeoRepository.cs" />
+    <Compile Include="Features\Seo\Data\SqlSeoRepository.cs" />
+    <Compile Include="Features\Seo\Helpers\SeoContentHelper.cs" />
+    <Compile Include="Features\Seo\Helpers\SeoHeadWriter.cs" />
+    <Compile Include="Features\Seo\Helpers\SeoRequestHelper.cs" />
+    <Compile Include="Features\Seo\Models\HeadLinkTag.cs" />
+    <Compile Include="Features\Seo\Models\HeadMetaTag.cs" />
+    <Compile Include="Features\Seo\Models\OpenContentHeadData.cs" />
+    <Compile Include="Features\Seo\Models\SeoContext.cs" />
+    <Compile Include="Features\Seo\Models\SeoOverrideResult.cs" />
+    <Compile Include="Features\Seo\SeoServiceFactory.cs" />
+    <Compile Include="Features\Seo\Services\ISeoService.cs" />
+    <Compile Include="Features\Seo\Services\SeoService.cs" />
+    <Compile Include="Features\Directory\ChamberMembershipController.cs" />
     <Compile Include="Helpers\ConfigBase.cs" />
     <Compile Include="Helpers\DataHandler.cs" />
-    <Compile Include="Helpers\DirectoryHelper.cs" />
+    <Compile Include="Features\Directory\Helpers\DirectoryHelper.cs" />
+    <Compile Include="Features\Directory\Helpers\DirectorySearchWithCategoriesResult.cs" />
     <Compile Include="Helpers\FormatHelper.cs" />
     <Compile Include="Helpers\LiveFormsReportController .cs" />
     <Compile Include="Controllers\AnalyticsReportController.cs" />
@@ -192,6 +211,7 @@
     <Content Include="SkinObject.Build" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Entities\" />
     <Folder Include="Scripts\" />
     <Folder Include="Styles\" />
   </ItemGroup>

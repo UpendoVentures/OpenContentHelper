@@ -1,0 +1,10 @@
+<h3>BusinessDirectoryManager</h3>
+<p class="Contributor">
+	Upendo <br />
+	<a href="mailto:solutions@upendoventures.com">solutions@upendoventures.com</a>
+</p>
+<hr/>
+<div class="License">
+	<h3>About the BusinessDirectoryManager</h3>
+	<p>This module is intended as an example of how to build DNN Modules with VueJS.</p>
+</div>
